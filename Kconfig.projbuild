@@ -1,0 +1,14 @@
+menu "ST25R3911B Configuration"
+    config ST25R3911B_PIN_MOSI
+        int "MOSI"
+        default 23
+    config ST25R3911B_PIN_MISO
+        int "MISO"
+        default 19
+    config ST25R3911B_PIN_SCLK
+        int "SCLK"
+        default 18
+    config ST25R3911B_PIN_CSEN
+        int "CSEN"
+        default 5
+endmenu
