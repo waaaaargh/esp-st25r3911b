@@ -45,7 +45,7 @@ void st25r3911b_init(st25r3911b_t *dev)
     };
 
     // Initialize the SPI bus
-    ret = spi_bus_initialize(SPI3_HOST, &buscfg, SPI_DMA_CH_AUTO);
+    ret = spi_bus_initialize(SPI3_HOST, &buscfg, 0);
     ESP_ERROR_CHECK(ret);
 
     const spi_device_interface_config_t reader_cfg = {
