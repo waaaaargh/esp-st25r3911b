@@ -81,8 +81,8 @@ uint8_t st25r3911b_read_register(st25r3911b_t *dev, uint8_t addr)
     ret = spi_device_polling_transmit(dev->handle, &xact);
     ESP_ERROR_CHECK(ret);
 
-    ESP_LOGI("st25r3911b", "Read Register %02X: %02X", addr, xact.rx_data[0]);
-    // vTaskDelay(10 / portTICK_RATE_MS);
+    ESP_LOGD("st25r3911b", "Read Register %02X: %02X", addr, xact.rx_data[0]);
+    vTaskDelay(10 / portTICK_PERIOD_MS);
     return xact.rx_data[0];
 }
 
@@ -101,7 +101,7 @@ void st25r3911b_write_register(st25r3911b_t *dev, uint8_t addr, uint8_t data)
 
     ret = spi_device_polling_transmit(dev->handle, &xact);
     ESP_ERROR_CHECK(ret);
-    ESP_LOGI("st25r3911b", "Write Register %02X: %02X", addr, data);
+    ESP_LOGD("st25r3911b", "Write Register %02X: %02X", addr, data);
 }
 
 void st25r3911b_direct_command(st25r3911b_t *dev, uint8_t command)
@@ -116,7 +116,7 @@ void st25r3911b_direct_command(st25r3911b_t *dev, uint8_t command)
 
     ret = spi_device_transmit(dev->handle, &xact);
     ESP_ERROR_CHECK(ret);
-    ESP_LOGI("st25r3911b", "Sent Direct Command: %02X", command);
+    ESP_LOGD("st25r3911b", "Sent Direct Command: %02X", command);
 }
 
 void st25r3911b_load_fifo(st25r3911b_t *dev, uint8_t bytes, uint8_t *data)
@@ -133,7 +133,7 @@ void st25r3911b_load_fifo(st25r3911b_t *dev, uint8_t bytes, uint8_t *data)
     ret = spi_device_polling_transmit(dev->handle, &xact);
     ESP_ERROR_CHECK(ret);
 
-    ESP_LOGI("st25r3911b", "Load FIFO: %i bytes", bytes);
+    ESP_LOGD("st25r3911b", "Load FIFO: %i bytes", bytes);
 }
 
 void st25r3911b_read_fifo(st25r3911b_t *dev, uint8_t bytes, uint8_t *data)
@@ -151,7 +151,7 @@ void st25r3911b_read_fifo(st25r3911b_t *dev, uint8_t bytes, uint8_t *data)
     ret = spi_device_polling_transmit(dev->handle, &xact);
     ESP_ERROR_CHECK(ret);
 
-    ESP_LOGI("st25r3911b", "Read FIFO: %i bytes", bytes);
+    ESP_LOGD("st25r3911b", "Read FIFO: %i bytes", bytes);
 }
 
 bool st25r3911b_check(st25r3911b_t *dev)
